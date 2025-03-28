@@ -33,10 +33,6 @@ background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
 red_car_image = pygame.transform.scale(red_car_image, (50, 100))
 blue_car_image = pygame.transform.scale(blue_car_image, (50, 100))
 
-#rotate neid õigeit pidi
-blue_car_image = pygame.transform.rotate(blue_car_image,180)
-red_car_image = pygame.transform.rotate(red_car_image,360)
-
 # Punase auto algasukoht (mängija)
 red_car = red_car_image.get_rect(center=(WIDTH // 2, HEIGHT - 60))
 
