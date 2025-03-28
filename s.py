@@ -17,6 +17,7 @@ RED = (200, 50, 50)
 
 # Skoor
 score = 0
+highscore = 0
 
 # Mängu kiirus (muutub vastavalt raskusastmele)
 difficulty = "Lihtne"
@@ -120,7 +121,7 @@ for i in range (10):
 
 def game_loop():
     global score
-
+    global highscore
     #Genereeri siniseid autosi
     blue_cars = [
         pygame.Rect(random.randint(LEFT_BORDER, RIGHT_BORDER), random.randint(-300, -8), 50, 100)
@@ -157,7 +158,12 @@ def game_loop():
             if car.y > HEIGHT:
                 car.y = random.randint(-300, -100)
                 car.x = random.randint(LEFT_BORDER, RIGHT_BORDER)
-                score += 10
+                if difficulty == "Lihtne":
+                    score += 3
+                elif difficulty == "Keskmine":
+                    score += 6
+                else:
+                    score += 10
 
             # **Collision Detection**
             if red_car.colliderect(car):
@@ -177,6 +183,12 @@ def game_loop():
         font = pygame.font.Font(None, 36)
         score_text = font.render('Skoor: ' + str(score), True, BLACK)
         screen.blit(score_text, (10, 10))
+        # Kuva highscore
+        font2 = pygame.font.Font(None, 36)
+        score_text2 = font2.render('Highscore: ' + str(highscore), True, BLACK)
+        screen.blit(score_text2, (10, 30))
+        if score > highscore:
+            highscore = score
 
         # Joonista punane auto
         screen.blit(red_car_image, red_car)
